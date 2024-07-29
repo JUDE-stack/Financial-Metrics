@@ -1,0 +1,50 @@
+import pandas as pd
+import statsmodels.api as sm
+
+# Load the data
+df = pd.read_excel('bosunn.xlsx')
+
+# to see the online interactive sheet
+from google.colab import sheets
+sheet = sheets.InteractiveSheet(df=df)
+
+# Hypotheses test
+  import pandas as pd
+  import statsmodels.api as sm
+
+  # Load the data
+  df = pd.read_excel('bosunn.xlsx')
+
+  # Check the data
+  print(df.head())
+  print(df.columns)
+
+  # Hypothesis 1: Effect on Market Value of Shares (MVS)
+  X1 = df[['EPS', 'EVA', 'MVA', 'No of shares', 'Intrest', 'Total debt', 'Capital employed', 'WACC', 'NOPAT', 'COE', 'Capital charge']]
+  y1 = df['MVS']
+  X1 = sm.add_constant(X1)
+  model1 = sm.OLS(y1, X1).fit()
+  print("Hypothesis 1 - Market Value of Shares (MVS):")
+  print(model1.summary())
+  print("\n")
+
+  # Hypothesis 2: Effect on Nominal Value of Shares (NVS)
+  X2 = df[['EPS', 'EVA', 'MVA', 'No of shares', 'Intrest', 'Total debt', 'Capital employed', 'WACC', 'NOPAT', 'COE', 'Capital charge']]
+  y2 = df['NVS']
+  X2 = sm.add_constant(X2)
+  model2 = sm.OLS(y2, X2).fit()
+  print("Hypothesis 2 - Nominal Value of Shares (NVS):")
+  print(model2.summary())
+  print("\n")
+
+  # Hypothesis 3: Effect on Cost of Debt (COD)
+  X3 = df[['EPS', 'EVA', 'MVA', 'No of shares', 'Intrest', 'Total debt', 'Capital employed', 'WACC', 'NOPAT', 'COE', 'Capital charge']]
+  y3 = df['COD']
+  X3 = sm.add_constant(X3)
+  model3 = sm.OLS(y3, X3).fit()
+  print("Hypothesis 3 - Cost of Debt (COD):")
+  print(model3.summary())
+  print("\n")
+
+
+
